@@ -1,5 +1,6 @@
-from sqlalchemy import Column, Integer, String, DateTime, Boolean
+from sqlalchemy import Column, Integer, String, DateTime, Boolean, ForeignKey
 from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import relationship
 from datetime import datetime
 
 Base = declarative_base()
@@ -13,6 +14,9 @@ class LtiDeployment(Base):
     deployment_id = Column(String, unique=True, index=True, nullable=False)  # deployment_id from LTI message
     created_at = Column(DateTime, default=datetime.utcnow)
     updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
+    
+    # Relationship to LtiSessions
+    sessions = relationship("LtiSession", back_populates="deployment")
 
 class LtiSession(Base):
     __tablename__ = "lti_sessions"
@@ -26,9 +30,12 @@ class LtiSession(Base):
     context_title = Column(String)  # Course or context title
     resource_link_id = Column(String, index=True)  # Link ID for specific resource
     roles = Column(String)  # Comma-separated roles string
-    lti_deployment_id = Column(Integer)  # Reference to LtiDeployment.id
+    lti_deployment_id = Column(Integer, ForeignKey("lti_deployments.id"))  # Reference to LtiDeployment.id
     created_at = Column(DateTime, default=datetime.utcnow)
     updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
+    
+    # Relationship to LtiDeployment
+    deployment = relationship("LtiDeployment", back_populates="sessions")
 
 class LtiNonce(Base):
     __tablename__ = "lti_nonces"

@@ -1,15 +1,64 @@
-# SPDX-FileCopyrightText: 2023 Marlon W (Mawoka)
-#
-# SPDX-License-Identifier: MPL-2.0
+```
+# Dependencies
+.classpath
+.project
+.settings/
+lib/
+logs/
+temp/
+tmp/
 
+# Python
 __pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# LTI specific
+classquiz-lti/
+
+# Environment
+.env
+.env.local
+.env.*
+.venv/
+venv/
+ENV/
+
+# IDE
+.vscode/
 .idea/
-node_modules/
-.svelte-kit/
-.env*
-*.db
-*.rdb
-survey.json
+*.swp
+*.swo
+*.tmp
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# Coverage
 .coverage
-export_deta.py
-target/
+htmlcov/
+.coverage.*
+coverage.xml
+```
